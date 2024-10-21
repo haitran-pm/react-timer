@@ -29,10 +29,13 @@ const useTimer = (ini = 0) => {
     setTime(0);
     setRecords([]);
     active.current.disabled = false;
+    isStart.current = false;
     clearInterval(refInterval.current);
   };
   const splitTimer = () => {
-    setRecords([time, ...records]);
+    if (isStart.current) {
+      setRecords([...records, time]);
+    }
   };
 
   return {
